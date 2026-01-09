@@ -9,13 +9,13 @@ stages:
       size: 374
     - path: california_housing.csv
       hash: md5
-      md5: ca5b757f0729c68d74d05bf9d9ca8486
-      size: 1895154
+      md5: 7fac32c6878264abb7fbb6ef9672d0be
+      size: 731122
     outs:
     - path: data/processed/data.csv
       hash: md5
-      md5: 1de64d7671b87bc1e3ca60109d50129d
-      size: 1910089
+      md5: fbe76ef78882bb27c955db9feedb6249
+      size: 732440
   train:
     cmd: python Training_script.py
     deps:
@@ -25,8 +25,8 @@ stages:
       size: 786
     - path: data/processed/data.csv
       hash: md5
-      md5: 1de64d7671b87bc1e3ca60109d50129d
-      size: 1910089
+      md5: fbe76ef78882bb27c955db9feedb6249
+      size: 732440
     - path: params.yaml
       hash: md5
       md5: a82cdd14176c9fe1eea394a4a6b48661
@@ -34,7 +34,7 @@ stages:
     outs:
     - path: models/model.pkl
       hash: md5
-      md5: 235cbc895a73f102751a97a787e751db
+      md5: 0211a55169f4551c9d51c5d72f3bbdb7
       size: 531
   evaluate:
     cmd: python Evaluation.py
@@ -45,11 +45,11 @@ stages:
       size: 985
     - path: data/processed/data.csv
       hash: md5
-      md5: 1de64d7671b87bc1e3ca60109d50129d
-      size: 1910089
+      md5: fbe76ef78882bb27c955db9feedb6249
+      size: 732440
     - path: models/model.pkl
       hash: md5
-      md5: 235cbc895a73f102751a97a787e751db
+      md5: 0211a55169f4551c9d51c5d72f3bbdb7
       size: 531
     - path: params.yaml
       hash: md5
@@ -58,5 +58,5 @@ stages:
     outs:
     - path: metrics/metrics.json
       hash: md5
-      md5: d99c02d2553b38638bc4b442a1b7959e
-      size: 66
+      md5: 9cb04abbf9898aa3d7f9c603e67912f2
+      size: 67
