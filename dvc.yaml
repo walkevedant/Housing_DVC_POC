@@ -1,0 +1,27 @@
+stages:
+  import:
+    cmd: python Data_Import.py
+    deps:
+      - Data_Import.py
+      - california_housing.csv
+    outs:
+      - data/processed/data.csv
+
+  train:
+    cmd: python Training_script.py
+    deps:
+      - Training_script.py
+      - data/processed/data.csv
+      - params.yaml
+    outs:
+      - models/model.pkl
+
+  evaluate:
+    cmd: python Evaluation.py
+    deps:
+      - Evaluation.py
+      - models/model.pkl
+      - data/processed/data.csv
+      - params.yaml
+    metrics:
+      - metrics/metrics.json
