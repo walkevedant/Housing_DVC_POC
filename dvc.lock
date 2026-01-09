@@ -1,0 +1,62 @@
+schema: '2.0'
+stages:
+  import:
+    cmd: python Data_Import.py
+    deps:
+    - path: Data_Import.py
+      hash: md5
+      md5: ac46e046a8fe412f781dc1b360937560
+      size: 374
+    - path: california_housing.csv
+      hash: md5
+      md5: ca5b757f0729c68d74d05bf9d9ca8486
+      size: 1895154
+    outs:
+    - path: data/processed/data.csv
+      hash: md5
+      md5: 1de64d7671b87bc1e3ca60109d50129d
+      size: 1910089
+  train:
+    cmd: python Training_script.py
+    deps:
+    - path: Training_script.py
+      hash: md5
+      md5: f2c75f7c28b7786a71f22d4461132185
+      size: 786
+    - path: data/processed/data.csv
+      hash: md5
+      md5: 1de64d7671b87bc1e3ca60109d50129d
+      size: 1910089
+    - path: params.yaml
+      hash: md5
+      md5: a82cdd14176c9fe1eea394a4a6b48661
+      size: 46
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 235cbc895a73f102751a97a787e751db
+      size: 531
+  evaluate:
+    cmd: python Evaluation.py
+    deps:
+    - path: Evaluation.py
+      hash: md5
+      md5: 769ce81d789f171acf96ad8e59eaccaa
+      size: 985
+    - path: data/processed/data.csv
+      hash: md5
+      md5: 1de64d7671b87bc1e3ca60109d50129d
+      size: 1910089
+    - path: models/model.pkl
+      hash: md5
+      md5: 235cbc895a73f102751a97a787e751db
+      size: 531
+    - path: params.yaml
+      hash: md5
+      md5: a82cdd14176c9fe1eea394a4a6b48661
+      size: 46
+    outs:
+    - path: metrics/metrics.json
+      hash: md5
+      md5: d99c02d2553b38638bc4b442a1b7959e
+      size: 66
